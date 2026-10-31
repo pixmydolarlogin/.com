@@ -1,308 +1,336 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>PIXMYDOLLAR - Avaliação de Produtos</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
-  <style>
-    :root {
-      --bg:#0f3f5a; --card:#f6f2e9; --text:#0b1e29; --muted:#6f7b86;
-      --primary:#0f3f5a; --accent-red:#c83a3a; --accent-blue:#1e5fa4;
-      --gold:#f4c542; --radius:28px; --success:#2ecc71;
-    }
-    *{box-sizing:border-box}
-    body{margin:0;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;color:var(--text);background:var(--bg);display:grid;place-items:center;min-height:100vh;padding:24px}
-    .app{width:min(820px,100%)}
-    .card{background:var(--card);border-radius:var(--radius);padding:48px 28px 32px;box-shadow:0 8px 30px rgba(0,0,0,.25);position:relative;transition:opacity .4s ease}
-    .hidden{display:none!important}
-    .fade-out{opacity:0}
-    .brand{display:grid;place-items:center;gap:14px;margin-bottom:28px}
-    .logo-text{font-weight:800;font-size:32px;letter-spacing:.5px;}
-    .logo-text .pix{color:var(--accent-red)} .logo-text .my{color:var(--accent-blue)}
-    h1{text-align:center}
-    .subtitle{text-align:center;color:var(--muted);margin-bottom:26px}
-    form{display:grid;gap:18px}
-    .input{padding:18px 20px;border-radius:14px;border:2px solid #cad3da;font-size:18px;width:100%}
-    .btn{border:0;border-radius:16px;padding:18px 20px;background:var(--primary);color:#fff;font-size:22px;font-weight:800;cursor:pointer;transition:.2s}
-    .btn:hover{filter:brightness(1.1)}
-    .terms{text-align:center;color:#7b8792;margin-top:26px}
-    .topbar{display:flex;align-items:center;justify-content:space-between;padding:14px 18px;background:var(--card);border-radius:18px;margin-bottom:16px}
-    .wallet{display:flex;align-items:center;gap:12px}
-    .wallet .amount{font-weight:800;border:2px solid var(--primary);padding:10px 16px;border-radius:14px}
-    .wallet .withdraw{background:var(--primary);color:#fff;padding:12px 18px;border-radius:14px;font-weight:800;border:0;cursor:pointer}
-    .stage{background:var(--card);border-radius:26px;padding:18px}
-    .progress{height:12px;background:#d8d8d8;border-radius:999px;overflow:hidden;margin-bottom:18px}
-    .bar{height:100%;width:0;background:var(--accent-blue);transition:width .3s ease}
-    .product{background:#fff;border-radius:20px;padding:14px;box-shadow:0 4px 16px rgba(0,0,0,.12);position:relative;overflow:hidden;border:2px solid #d9e0e6;text-align:center;animation:fadeIn .6s ease}
-    @keyframes fadeIn{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
-    .badge{position:absolute;top:14px;right:14px;background:var(--primary);color:#fff;font-weight:800;padding:10px 14px;border-radius:14px;font-size:18px}
-    .product img{width:100%;aspect-ratio:16/10;object-fit:cover;border-radius:14px;display:block;margin-bottom:10px}
-    .question{text-align:center;font-size:20px;font-weight:700;margin:16px 0 10px}
-    .cta{display:block;width:100%;background:var(--primary);color:#fff;border:0;padding:12px;border-radius:14px;font-size:18px;font-weight:800;margin-top:6px;cursor:pointer;transition:.2s}
-    .cta.done{background:var(--success)!important;}
-    .cta[disabled]{opacity:.6;cursor:not-allowed}
-    .grid{display:grid;grid-template-columns:1fr;gap:22px}
-    @media(min-width:680px){.grid{grid-template-columns:repeat(1,1fr)}}
-    .bottomnav{display:flex;justify-content:space-around;align-items:center;flex-wrap:wrap;gap:18px;margin-top:28px;background:linear-gradient(145deg,var(--accent-blue),var(--primary));padding:18px 10px;border-radius:24px;box-shadow:0 6px 25px rgba(0,0,0,.3)}
-    .bottomnav button{flex:1;min-width:140px;background:var(--gold);color:#0b1e29;border:0;border-radius:16px;padding:12px 14px;font-weight:800;font-size:16px;cursor:pointer;transition:.25s;box-shadow:0 4px 10px rgba(0,0,0,.2)}
-    .bottomnav button:hover{transform:translateY(-3px);filter:brightness(1.1)}
-    .withdraw-form{display:grid;gap:18px;text-align:center}
-  </style>
-</head>
-<body>
-  <div class="app">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Transferência TED - FinTech Premium</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            black: '#0a0b0d',
+                            card: '#121418',
+                            input: '#1a1d24',
+                            border: '#2a2e39',
+                            green: '#10b981',
+                            neon: '#00ff87',
+                            'neon-hover': '#00e077',
+                            glow: 'rgba(0, 255, 135, 0.15)'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0a0b0d;
+            color: #f3f4f6;
+        }
 
-    <!-- LOGIN -->
-    <main id="loginScreen" class="card">
-      <header class="brand">
-        <div class="logo-text"><span class="pix">PIX</span><span class="my">MY</span><span class="pix">DOLLAR</span></div>
-      </header>
-      <h1>Seja bem-vindo!</h1>
-      <p class="subtitle">Acesse o app com seu e-mail</p>
-      <form id="loginForm">
-        <input class="input" id="email" type="email" placeholder="Seu e-mail" required />
-        <button class="btn" type="submit">ENTRAR</button>
-      </form>
-      <p class="terms">Ao utilizar o app, você concorda com os nossos Termos de uso</p>
+        .glass-card {
+            background: rgba(18, 20, 24, 0.85);
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .neon-glow {
+            box-shadow: 0 0 25px rgba(0, 255, 135, 0.25);
+        }
+
+        .input-glow:focus {
+            box-shadow: 0 0 12px rgba(0, 255, 135, 0.3);
+            border-color: #00ff87;
+        }
+
+        /* Ocultar setas no input type number */
+        input[type=number]::-webkit-inner-spin-button,
+        input[type=number]::-webkit-outer-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+
+        /* Modal backdrop transition */
+        .modal-fade {
+            transition: opacity 0.3s ease-in-out;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col justify-between selection:bg-brand-neon selection:text-black">
+
+    <!-- Header Navigation -->
+    <header class="border-b border-brand-border bg-brand-black/90 sticky top-0 z-40 backdrop-blur-md">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <div class="flex items-center space-x-3">
+                <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-brand-green to-brand-neon flex items-center justify-center text-black font-bold text-xl shadow-lg shadow-brand-neon/20">
+                    <i data-lucide="arrow-right-left" class="w-6 h-6 stroke-[2.5]"></i>
+                </div>
+                <div>
+                    <span class="text-xl font-bold tracking-wider text-white">NEXUS<span class="text-brand-neon">BANK</span></span>
+                    <span class="block text-[10px] text-gray-400 uppercase tracking-widest -mt-1">Sistema de Transferências</span>
+                </div>
+            </div>
+            <div class="flex items-center space-x-3 text-xs sm:text-sm text-gray-400">
+                <span class="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-medium bg-emerald-500/10 text-brand-neon border border-brand-neon/20">
+                    <span class="w-2 h-2 rounded-full bg-brand-neon mr-2 animate-pulse"></span> Sistema Operacional
+                </span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="flex-grow flex items-center justify-center p-4 sm:p-6 lg:p-8">
+        <div class="w-full max-w-2xl">
+            
+            <!-- Form Card -->
+            <div class="glass-card rounded-3xl p-6 sm:p-10 shadow-2xl relative overflow-hidden">
+                <!-- Background Accent Glow -->
+                <div class="absolute -top-24 -right-24 w-60 h-60 bg-brand-neon/10 rounded-full blur-3xl pointer-events-none"></div>
+                <div class="absolute -bottom-24 -left-24 w-60 h-60 bg-brand-green/10 rounded-full blur-3xl pointer-events-none"></div>
+
+                <div class="mb-8">
+                    <h1 class="text-2xl sm:text-3xl font-bold text-white flex items-center gap-2">
+                        Transferência TED
+                    </h1>
+                    <p class="text-sm text-gray-400 mt-2">Preencha os dados do favorecido abaixo para cadastrar e autorizar o envio dos valores com segurança.</p>
+                </div>
+
+                <form id="tedForm" onsubmit="handleFormSubmit(event)" class="space-y-6">
+                    
+                    <!-- Dados do Favorecido Section -->
+                    <div class="space-y-4">
+                        <h2 class="text-xs uppercase font-semibold text-brand-neon tracking-wider">Dados Pessoais do Favorecido</h2>
+                        
+                        <!-- Nome Completo -->
+                        <div>
+                            <label for="fullName" class="block text-sm font-medium text-gray-300 mb-1.5">Nome do Favorecido *</label>
+                            <div class="relative">
+                                <span class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-gray-400">
+                                    <i data-lucide="user" class="w-5 h-5"></i>
+                                </span>
+                                <input type="text" id="fullName" required placeholder="Digite o nome completo do destinatário" 
+                                    class="w-full pl-11 pr-4 py-3 bg-brand-input border border-brand-border rounded-xl text-white placeholder-gray-500 focus:outline-none input-glow transition duration-200">
+                            </div>
+                        </div>
+
+                        <!-- CPF/CNPJ -->
+                        <div>
+                            <label for="document" class="block text-sm font-medium text-gray-300 mb-1.5">CPF ou CNPJ *</label>
+                            <div class="relative">
+                                <span class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-gray-400">
+                                    <i data-lucide="file-text" class="w-5 h-5"></i>
+                                </span>
+                                <input type="text" id="document" required placeholder="000.000.000-00" maxlength="18"
+                                    oninput="formatDocument(this)"
+                                    class="w-full pl-11 pr-4 py-3 bg-brand-input border border-brand-border rounded-xl text-white placeholder-gray-500 focus:outline-none input-glow transition duration-200">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="border-t border-brand-border/50 pt-4"></div>
+
+                    <!-- Dados Bancários Section -->
+                    <div class="space-y-4">
+                        <h2 class="text-xs uppercase font-semibold text-brand-neon tracking-wider">Dados Bancários</h2>
+
+                        <!-- Banco Destino -->
+                        <div>
+                            <label for="bank" class="block text-sm font-medium text-gray-300 mb-1.5">Banco Destino *</label>
+                            <div class="relative">
+                                <span class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-gray-400">
+                                    <i data-lucide="building-2" class="w-5 h-5"></i>
+                                </span>
+                                <select id="bank" required class="w-full pl-11 pr-4 py-3 bg-brand-input border border-brand-border rounded-xl text-white focus:outline-none input-glow transition duration-200 appearance-none cursor-pointer">
+                                    <option value="" disabled selected>Selecione a instituição financeira</option>
+                                    <option value="001">001 - Banco do Brasil S.A.</option>
+                                    <option value="237">237 - Banco Bradesco S.A.</option>
+                                    <option value="341">341 - Itaú Unibanco S.A.</option>
+                                    <option value="104">104 - Caixa Econômica Federal</option>
+                                    <option value="033">033 - Banco Santander Brasil S.A.</option>
+                                    <option value="260">260 - Nu Pagamentos S.A. (Nubank)</option>
+                                    <option value="077">077 - Banco Inter S.A.</option>
+                                    <option value="336">336 - Banco C6 S.A.</option>
+                                    <option value="212">212 - Banco Original S.A.</option>
+                                    <option value="outro">Outro Banco...</option>
+                                </select>
+                                <span class="absolute inset-y-0 right-0 pr-3.5 flex items-center pointer-events-none text-gray-400">
+                                    <i data-lucide="chevron-down" class="w-5 h-5"></i>
+                                </span>
+                            </div>
+                        </div>
+
+                        <!-- Agência e Conta -->
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <div>
+                                <label for="agency" class="block text-sm font-medium text-gray-300 mb-1.5">Agência (sem dígito) *</label>
+                                <div class="relative">
+                                    <span class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-gray-400">
+                                        <i data-lucide="hash" class="w-5 h-5"></i>
+                                    </span>
+                                    <input type="text" id="agency" required placeholder="0001" maxlength="5"
+                                        class="w-full pl-11 pr-4 py-3 bg-brand-input border border-brand-border rounded-xl text-white placeholder-gray-500 focus:outline-none input-glow transition duration-200">
+                                </div>
+                            </div>
+                            <div>
+                                <label for="account" class="block text-sm font-medium text-gray-300 mb-1.5">Conta com dígito *</label>
+                                <div class="relative">
+                                    <span class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-gray-400">
+                                        <i data-lucide="credit-card" class="w-5 h-5"></i>
+                                    </span>
+                                    <input type="text" id="account" required placeholder="12345-6" maxlength="12"
+                                        class="w-full pl-11 pr-4 py-3 bg-brand-input border border-brand-border rounded-xl text-white placeholder-gray-500 focus:outline-none input-glow transition duration-200">
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Tipo de Conta -->
+                        <div>
+                            <label class="block text-sm font-medium text-gray-300 mb-1.5">Tipo de Conta *</label>
+                            <div class="grid grid-cols-2 gap-4">
+                                <label class="flex items-center justify-center p-3 border border-brand-border rounded-xl cursor-pointer bg-brand-input hover:border-brand-neon/50 transition">
+                                    <input type="radio" name="accountType" value="corrente" checked class="accent-brand-neon w-4 h-4">
+                                    <span class="ml-2 text-sm text-gray-200 font-medium">Conta Corrente</span>
+                                </label>
+                                <label class="flex items-center justify-center p-3 border border-brand-border rounded-xl cursor-pointer bg-brand-input hover:border-brand-neon/50 transition">
+                                    <input type="radio" name="accountType" value="poupanca" class="accent-brand-neon w-4 h-4">
+                                    <span class="ml-2 text-sm text-gray-200 font-medium">Conta Poupança</span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="border-t border-brand-border/50 pt-4"></div>
+
+                    <!-- Finalidade / Observações -->
+                    <div class="space-y-4">
+                        <h2 class="text-xs uppercase font-semibold text-brand-neon tracking-wider">Detalhes Adicionais</h2>
+
+                        <!-- Finalidade -->
+                        <div>
+                            <label for="purpose" class="block text-sm font-medium text-gray-300 mb-1.5">Finalidade / Descrição (Opcional)</label>
+                            <div class="relative">
+                                <span class="absolute top-3.5 left-0 pl-3.5 flex items-start pointer-events-none text-gray-400">
+                                    <i data-lucide="message-square" class="w-5 h-5"></i>
+                                </span>
+                                <textarea id="purpose" rows="2" placeholder="Ex: Pagamento de serviços prestados"
+                                    class="w-full pl-11 pr-4 py-3 bg-brand-input border border-brand-border rounded-xl text-white placeholder-gray-500 focus:outline-none input-glow transition duration-200 resize-none"></textarea>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Botão Cadastrar Dados -->
+                    <div class="pt-4">
+                        <button type="submit" id="btnCadastrar"
+                            class="w-full py-4 px-6 rounded-xl bg-gradient-to-r from-brand-green to-brand-neon text-black font-bold text-base tracking-wide hover:brightness-110 active:scale-[0.99] transition duration-200 shadow-lg shadow-brand-neon/20 flex items-center justify-center space-x-2">
+                            <i data-lucide="check-circle-2" class="w-5 h-5"></i>
+                            <span>Cadastrar Dados</span>
+                        </button>
+                    </div>
+                </form>
+
+            </div>
+        </div>
     </main>
 
-    <!-- TAREFAS -->
-    <section id="taskScreen" class="hidden">
-      <div class="topbar">
-        <div class="wallet">
-          <div class="amount" id="amount">R$ 0,00</div>
-          <button class="withdraw" id="withdrawTopBtn">SACAR</button>
+    <!-- Modal de Sucesso -->
+    <div id="successModal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-md opacity-0 pointer-events-none transition-opacity duration-300">
+        <div class="glass-card rounded-3xl max-w-md w-full p-6 sm:p-8 border border-brand-neon/30 shadow-2xl text-center transform scale-95 transition-transform duration-300 relative overflow-hidden" id="modalCard">
+            
+            <!-- Glow FX -->
+            <div class="absolute top-0 left-1/2 -translate-x-1/2 w-40 h-40 bg-brand-neon/20 rounded-full blur-2xl pointer-events-none"></div>
+
+            <div class="relative z-10">
+                <!-- Check Icon Animation -->
+                <div class="w-20 h-20 rounded-full bg-brand-neon/10 border-2 border-brand-neon mx-auto flex items-center justify-center text-brand-neon mb-5 shadow-lg shadow-brand-neon/20 animate-bounce">
+                    <i data-lucide="check" class="w-10 h-10 stroke-[3]"></i>
+                </div>
+
+                <h3 class="text-2xl font-bold text-white mb-2">Cadastro Realizado com Sucesso!</h3>
+                <p class="text-sm text-gray-300 mb-6">Os dados da transferência TED foram registrados e validados com segurança pelo sistema.</p>
+
+                <!-- Resumo Breve -->
+                <div class="bg-brand-input/80 rounded-xl p-4 border border-brand-border/60 text-left mb-6 space-y-2 text-xs text-gray-300">
+                    <div class="flex justify-between">
+                        <span class="text-gray-400">Favorecido:</span>
+                        <span id="summaryName" class="font-semibold text-white">---</span>
+                    </div>
+                    <div class="flex justify-between">
+                        <span class="text-gray-400">CPF/CNPJ:</span>
+                        <span id="summaryDoc" class="font-semibold text-white">---</span>
+                    </div>
+                </div>
+
+                <!-- Botão Prosseguir com o Registro (Link Externo) -->
+                <a href="https://go.perfectpay.com.br/PPU38CQHE1Q" id="btnProsseguir" target="_blank" rel="noopener noreferrer"
+                    class="w-full py-4 px-6 rounded-xl bg-brand-neon text-black font-extrabold text-base tracking-wide hover:bg-brand-neon-hover active:scale-[0.99] transition duration-200 shadow-xl shadow-brand-neon/30 flex items-center justify-center space-x-2">
+                    <span>Prosseguir com o Registro</span>
+                    <i data-lucide="arrow-right" class="w-5 h-5"></i>
+                </a>
+            </div>
         </div>
-        <button id="logoutBtn" style="background:#c83a3a;color:#fff;border:0;padding:12px 18px;border-radius:14px;font-weight:800;cursor:pointer">SAIR</button>
-      </div>
+    </div>
 
-      <div class="stage card">
-        <div class="progress"><div id="bar" class="bar"></div></div>
-        <div id="products" class="grid"></div>
-      </div>
+    <!-- Footer -->
+    <footer class="border-t border-brand-border bg-brand-black/90 py-4 text-center text-xs text-gray-500">
+        <p>&copy; 2026 NexusBank. Todos os direitos reservados. Conexão Segura SSL 256-bit.</p>
+    </footer>
 
-      <nav class="bottomnav">
-        <button id="vipBtn">🧭 Quero ser VIP</button>
-        <button id="saquesBtn">💸 Saques</button>
-        <button id="tarefasBtn">🔄 Volte as Tarefas</button>
-        <button id="premioBtn">🎁 Prêmio Instantâneo</button>
-      </nav>
-    </section>
+    <!-- JavaScript Handling -->
+    <script>
+        // Inicializar ícones do Lucide
+        lucide.createIcons();
 
-    <!-- FORMULÁRIO DE SAQUE -->
-    <section id="withdrawScreen" class="card hidden">
-      <div class="topbar">
-        <div class="wallet">
-          <div class="amount" id="amountWithdraw">R$ 0,00</div>
-        </div>
-        <button id="logoutBtnWithdraw" style="background:#c83a3a;color:#fff;border:0;padding:10px 16px;border-radius:12px;font-weight:800;cursor:pointer">SAIR</button>
-      </div>
-      <h2 style="text-align:center;">Solicitar Saque</h2>
-      <p class="subtitle">Preencha os dados abaixo para receber via Pix</p>
-      <form id="withdrawForm" class="withdraw-form">
-        <input class="input" type="text" id="nomePix" placeholder="Seu nome completo" required>
-        <input class="input" type="email" id="emailPix" placeholder="Seu e-mail" required>
-        <input class="input" type="text" id="chavePix" placeholder="Sua chave Pix (CPF, e-mail ou celular)" required>
-        <button class="btn" type="submit" id="submitWithdraw">Solicitar Saque</button>
-        <button class="btn" type="button" id="cancelWithdraw" style="background:#6f7b86">Cancelar</button>
-      </form>
-    </section>
-
-  </div>
-
-  <audio id="coinSound" src="https://cdn.pixabay.com/download/audio/2021/08/04/audio_3f65e021ba.mp3?filename=coin-drop-1.mp3" preload="auto"></audio>
-
-  <script>
-    const WITHDRAW_URL = "https://redirect.urusoficial.com.br/ZCFDTUUEDK3MY?a=E3ffgAiM";
-
-    // 💵 Produtos com recompensas entre R$ 10,00 e R$ 80,00
-    const productsData = Array.from({length:10}).map((_,i)=>({
-      id:i+1,
-      title:`Avalie Agora #${i+1}`,
-      reward:Number((Math.random() * (80 - 10) + 10).toFixed(2)),
-      img:`https://picsum.photos/seed/prod${i+3}/800/500`,
-      questions:["Você gostaria de conhecer esse lugar?","Você levaria um amigo?","Recomendaria essa viagem?"]
-    }));
-
-    let total=0, completed=0, currentIndex=0;
-    let currentEmail=null;
-    let prizeClaimed = false; // Flag para garantir que o prêmio seja concedido apenas uma vez
-
-    const toBR = n => new Intl.NumberFormat('pt-BR',{style:'currency',currency:'BRL'}).format(n);
-    const playCoin=()=>{const s=document.getElementById('coinSound');s.currentTime=0;s.play().catch(()=>{});};
-    const show=el=>el.classList.remove('hidden');
-    const hide=el=>el.classList.add('hidden');
-
-    const storageKey = email => `pixmydollar:${email.toLowerCase().trim()}`;
-    function saveState(){
-      if(!currentEmail) return;
-      const data={total,completed,currentIndex};
-      localStorage.setItem(storageKey(currentEmail), JSON.stringify(data));
-    }
-    function loadState(email){
-      try{
-        const raw=localStorage.getItem(storageKey(email));
-        if(!raw) return null;
-        const data=JSON.parse(raw);
-        if(typeof data.total==="number") return data;
-      }catch(e){}
-      return null;
-    }
-
-    setInterval(saveState,3000);
-    window.addEventListener("beforeunload",saveState);
-
-    function updateAmount(){
-      document.getElementById('amount').textContent = toBR(total);
-      document.getElementById('amountWithdraw').textContent = toBR(total);
-    }
-    function updateProgress(){
-      document.getElementById('bar').style.width = (completed/productsData.length*100)+'%';
-    }
-
-    const loginScreen = document.getElementById('loginScreen');
-    const taskScreen  = document.getElementById('taskScreen');
-    const withdrawScreen = document.getElementById('withdrawScreen');
-
-    function renderCurrentProduct(){
-      const wrap=document.getElementById('products');
-      wrap.innerHTML='';
-      if(currentIndex >= productsData.length){
-        wrap.innerHTML = `
-          <article class="product">
-            <h2>🎉 Parabéns!</h2>
-            <p>Você concluiu todas as avaliações.</p>
-            <p><strong>Total ganho:</strong> ${toBR(total)}</p>
-            <button class="cta" id="SacarBtn">🔁 Solicitar Saque</button>
-          </article>`;
-        document.getElementById('SacarBtn').addEventListener('click', goToWithdraw);
-        return;
-      }
-      const p = productsData[currentIndex];
-      const card=document.createElement('article');
-      card.className='product';
-      card.innerHTML=`
-        <span class="badge">+${toBR(p.reward)}</span>
-        <img src="${p.img}" alt="${p.title}" loading="lazy"/>
-        <h3>${p.title}</h3>
-        <div class="questions" id="q${p.id}"></div>
-        <p style="color:var(--muted);margin-top:10px;">Produto ${currentIndex+1} de ${productsData.length}</p>
-      `;
-      wrap.appendChild(card);
-      renderQuestions(p, card.querySelector('.questions'));
-    }
-
-    function renderQuestions(p,container){
-      let answered=0;
-      function showQuestion(idx){
-        if(idx>=p.questions.length){
-          container.innerHTML='<button class="cta done">✓ Concluir produto</button>';
-          const doneBtn = container.querySelector('.done');
-          doneBtn.addEventListener('click',()=>{
-            total+=p.reward; completed++; currentIndex++;
-            updateAmount(); updateProgress(); playCoin(); saveState();
-            document.querySelector('.product').classList.add('fade-out');
-            setTimeout(()=>{renderCurrentProduct();},400);
-          });
-          return;
+        // Formatação dinâmica para CPF/CNPJ
+        function formatDocument(input) {
+            let value = input.value.replace(/\D/g, '');
+            
+            if (value.length <= 11) {
+                // Formato CPF: 000.000.000-00
+                value = value.replace(/(\d{3})(\d)/, '$1.$2');
+                value = value.replace(/(\d{3})(\d)/, '$1.$2');
+                value = value.replace(/(\d{3})(\d{1,2})$/, '$1-$2');
+            } else {
+                // Formato CNPJ: 00.000.000/0001-00
+                value = value.substring(0, 14);
+                value = value.replace(/^(\d{2})(\d)/, '$1.$2');
+                value = value.replace(/^(\d{2})\.(\d{3})(\d)/, '$1.$2.$3');
+                value = value.replace(/\.(\d{3})(\d)/, '.$1/$2');
+                value = value.replace(/(\d{4})(\d)/, '$1-$2');
+            }
+            input.value = value;
         }
-        container.innerHTML=`
-          <p class="question">${p.questions[idx]}</p>
-          <button class="cta">👍 Sim</button>
-          <button class="cta">👎 Não</button>
-        `;
-        container.querySelectorAll('.cta').forEach(btn=>{
-          btn.addEventListener('click',()=>{ playCoin(); answered++; showQuestion(answered); });
-        });
-      }
-      showQuestion(0);
-    }
 
-    document.getElementById('loginForm').addEventListener('submit',ev=>{
-      ev.preventDefault();
-      const email=document.getElementById('email').value.trim();
-      if(!email) return;
-      currentEmail=email;
-      const prev=loadState(email);
-      if(prev){
-        total=prev.total; completed=prev.completed; currentIndex=prev.currentIndex;
-      }else{
-        total=0; completed=0; currentIndex=0;
-      }
-      hide(loginScreen); show(taskScreen);
-      updateAmount(); updateProgress(); renderCurrentProduct();
-      saveState();
-    });
+        // Submissão do Formulário
+        function handleFormSubmit(event) {
+            event.preventDefault();
 
-    document.getElementById('vipBtn').addEventListener('click', () => {
-      // Delay de 2 segundos antes de redirecionar
-      setTimeout(() => {
-        window.location.href = "https://redirect.urusoficial.com.br/GNHF447NHNVZP?a=E3ffgAiM";
-      }, 2000); // 2000ms = 2 segundos
-    });
+            // Resgatar valores para exibição no resumo do modal
+            const name = document.getElementById('fullName').value;
+            const doc = document.getElementById('document').value;
 
-    document.getElementById('saquesBtn').addEventListener('click', goToWithdraw);
-    document.getElementById('tarefasBtn').addEventListener('click', () => {
-      // Reinicia o progresso e começa as tarefas desde o início
-      total = 0;
-      completed = 0;
-      currentIndex = 0;
+            document.getElementById('summaryName').innerText = name || 'Não informado';
+            document.getElementById('summaryDoc').innerText = doc || 'Não informado';
 
-      // Atualiza o valor e o progresso
-      updateAmount();
-      updateProgress();
-      
-      // Exibe as tarefas novamente
-      renderCurrentProduct();
-    });
-    document.getElementById('premioBtn').addEventListener('click', () => {
-      if (prizeClaimed) {
-        alert('🎁 Você já ganhou um prêmio instantâneo!');
-        return;
-      }
+            // Exibir Modal de Sucesso com Animação
+            const modal = document.getElementById('successModal');
+            const modalCard = document.getElementById('modalCard');
 
-      const premio = Number((Math.random() * 70 + 10).toFixed(2));
-      total += premio;
-      updateAmount();
-      playCoin();
-      saveState();
-
-      prizeClaimed = true;  // Marca o prêmio como concedido
-
-      alert(`🎁 Parabéns! Você ganhou ${toBR(premio)}!`);
-    });
-    document.getElementById('withdrawTopBtn').addEventListener('click', goToWithdraw);
-
-    function goToWithdraw(){
-      hide(loginScreen); hide(taskScreen); show(withdrawScreen); updateAmount();
-    }
-
-    document.getElementById('withdrawForm').addEventListener('submit',ev=>{
-      ev.preventDefault();
-      const nome=document.getElementById('nomePix').value.trim();
-      const email=document.getElementById('emailPix').value.trim();
-      const chave=document.getElementById('chavePix').value.trim();
-      if(!nome||!email||!chave){alert('Preencha todos os campos!');return;}
-      saveState();
-      alert(`✅ Solicitação enviada!\n\nNome: ${nome}\nE-mail: ${email}\nChave Pix: ${chave}\nValor: ${toBR(total)}\n\nVocê será redirecionado para a página de saque.`);
-      window.location.href=WITHDRAW_URL;
-    });
-
-    document.getElementById('cancelWithdraw').addEventListener('click',()=>{
-      hide(withdrawScreen); show(taskScreen);
-    });
-
-    function logoutToLogin(){
-      saveState();
-      const confirmExit=confirm("Tem certeza que deseja sair? Seu progresso será salvo.");
-      if(!confirmExit) return;
-      currentEmail=null;
-      hide(taskScreen); hide(withdrawScreen); show(loginScreen);
-      document.getElementById('email').value='';
-    }
-    document.getElementById('logoutBtn').addEventListener('click', logoutToLogin);
-    document.getElementById('logoutBtnWithdraw').addEventListener('click', logoutToLogin);
-  </script>
+            modal.classList.remove('opacity-0', 'pointer-events-none');
+            modal.classList.add('opacity-100');
+            modalCard.classList.remove('scale-95');
+            modalCard.classList.add('scale-100');
+        }
+    </script>
 </body>
 </html>
